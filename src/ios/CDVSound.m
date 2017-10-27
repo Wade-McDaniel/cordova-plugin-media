@@ -240,9 +240,6 @@
             // First create an AVPlayerItem
             AVPlayerItem* playerItem = [AVPlayerItem playerItemWithURL:resourceUrl];
          
-            // WAM: setting what I am guessing is a smaller-than-default buffer size to speed streaming
-            playerItem.preferredForwardBufferDuration = 30;
-
             // Subscribe to the AVPlayerItem's DidPlayToEndTime notification.
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:playerItem];
 
@@ -380,7 +377,10 @@
                         NSLog(@"Playing stream with AVPlayer & default rate");
                         [avPlayer play];
                     }
-
+                    
+                    // WAM: setting what I am guessing is a smaller-than-default buffer size to speed streaming
+                    avPlayer.currentItem.preferredForwardBufferDuration = 30;
+                    
                 } else {
 
                     NSNumber* loopOption = [options objectForKey:@"numberOfLoops"];
