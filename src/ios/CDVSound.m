@@ -378,8 +378,8 @@
                         [avPlayer play];
                     }
                     
-                    // WAM: setting what I am guessing is a smaller-than-default buffer size to speed streaming
-                    avPlayer.currentItem.preferredForwardBufferDuration = 30;
+                    // WAM: Start playing as fast as possible
+                    avPlayer.automaticallyWaitsToMinimizeStalling = false;
                     
                 } else {
 
